@@ -8,6 +8,9 @@ import { TodoListComponent } from './todo-list.component';
   declarations: [TodoListComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    TodoListComponent
   ]
 })
 export class TodoListModule { }
