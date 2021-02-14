@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoListService } from './todo-list.service'; // c 需引入 s
 
 @Component({
   selector: 'app-todo-list',
@@ -7,15 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private todoListService : TodoListService) { }
 
   ngOnInit(): void {
   }
 
-  addTodo(inputRef : HTMLInputElement):void{
-    console.log(inputRef) //$event.target => HTMLInputElement 是將整個 input 元素丟入
-    console.log(inputRef.value); // 從 input 元素中取出輸入的 value
-    inputRef.value = '';    
+  addTodo(inputRef : HTMLInputElement):void{    
+    const todo = inputRef.value.trim(); // trim() 去除空格
+    if(todo) //trim() 若沒有內容，則回傳 false
+      this.todoListService.add(inputRef.value);
+    inputRef.value = "";
+  }
+  
+  getList(): string[]{
+    return this.todoListService.getList();
   }
 
 }

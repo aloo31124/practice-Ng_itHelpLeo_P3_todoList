@@ -8,12 +8,12 @@
         autofocus
       >
     </header>
-    <section class="main">
+    <section class="main" *ngIf="getList().length" > <!-- 使用*ngIf判斷，沒資料則不顯示清單的 Section -->
       <ul class="todo-list">
-        <li>
+        <li *ngFor="let todo of getList()">  <!-- *ngFor 將 string[] 資料逐筆產生於 todo  -->
           <div class="view">
             <input type="checkbox" class="toggle"> <!--清單勾選使用 (要放第一個) -->
-            <label>第一個代辦事項</label>            
+            <label>{{ todo }}</label>        <!-- {{xx}} 接收 *ngFor 逐筆產生的值 -->    
             <button class="destroy"></button> <!-- 刪除事項按鈕 -->
           </div>
         </li>
